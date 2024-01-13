@@ -19,7 +19,13 @@ export default function ChatPage() {
 
     function handleSend() {
         setMessages(prev => [...prev, {user: socket.id, message}])
-        socket.emit('send-message', {user: socket.id, message})
+        socket.emit('send-message', socket.id, message, room)
+    }
+
+    function handleJoinRoom() {
+        socket.emit('join-room', room, message => {
+            setMessages(prev => [...prev, {user: 'Info', message}])
+        })
     }
     return (
         <section>
@@ -29,7 +35,7 @@ export default function ChatPage() {
             </div>
             <div>
                 <input type="text" value={room} onChange={e => setRoom(e.target.value)}/>
-                <button>Join room</button>
+                <button onClick={handleJoinRoom}>Join room</button>
             </div>
             <ul>
                 {messages.map((mess, ix) => {
