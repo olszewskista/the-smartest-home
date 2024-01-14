@@ -15,12 +15,17 @@ const io = new Server(expressServer, {
 
 io.on('connection', socket => {
     socket.on('send-message', (user, message, room) => {
-        if (room === '') socket.broadcast.emit('receive-message', {user, message})
+        if (room === 'all') socket.broadcast.emit('receive-message', {user, message})
         else socket.to(room).emit('receive-message', {user, message})
     })
 
     socket.on('join-room', (room, cb) => {
         socket.join(room)
         cb('You have joined ' + room)
+    })
+
+    socket.on('leave-room', (room, cb) => {
+        socket.leave(room)
+        cb('You have left ' + room)
     })
 })

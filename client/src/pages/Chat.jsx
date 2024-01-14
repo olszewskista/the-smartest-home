@@ -5,7 +5,7 @@ const socket = io('http://localhost:3000');
 export default function ChatPage() {
     const [messages, setMessages] = useState([]);
     const [message, setMessage] = useState('')
-    const [room, setRoom] = useState('')
+    const [room, setRoom] = useState('all')
 
     useEffect(() => {
         socket.on('receive-message', data => {
@@ -27,6 +27,13 @@ export default function ChatPage() {
             setMessages(prev => [...prev, {user: 'Info', message}])
         })
     }
+
+    function handleLeaveRoom() {
+        socket.emit('leave-room', room, message => {
+            setMessages(prev => [...prev, {user: "Info", message}])
+        })
+    }
+    console.log(room)
     return (
         <section>
             <div>
@@ -34,8 +41,13 @@ export default function ChatPage() {
                 <button onClick={handleSend}>Send message</button>
             </div>
             <div>
-                <input type="text" value={room} onChange={e => setRoom(e.target.value)}/>
+                <select name="room" id="room" onChange={e => setRoom(e.target.value)}>
+                    <option value="all">All</option>
+                    <option value="livingRoom">Living Room</option>
+                    <option value="kitchen">Kitchen</option>
+                </select>
                 <button onClick={handleJoinRoom}>Join room</button>
+                <button onClick={handleLeaveRoom}>Exit room</button>
             </div>
             <ul>
                 {messages.map((mess, ix) => {
