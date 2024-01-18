@@ -13,7 +13,7 @@ const userSchema = new mongoose.Schema({
     },
     role: {
         type: String,
-        enum: ['parent', 'child']
+        enum: ['admin', 'adult', 'child']
     }
 })
 
@@ -38,6 +38,6 @@ userSchema.statics.login = async function(name, password) {
     throw new Error('Incorrect password!')
 }
 
-const user = mongoose.model('user', userSchema)
+const User = mongoose.model('user', userSchema)
 
-module.exports = user
+module.exports = User
