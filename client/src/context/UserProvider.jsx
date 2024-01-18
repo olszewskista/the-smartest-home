@@ -1,8 +1,11 @@
 import { createContext, useContext, useReducer } from 'react';
 
 const UserContext = createContext({
-    name: '',
-    role: '',
+    state: {
+        name: '',
+        role: '',
+    },
+    dispatch: () => {},
 });
 
 function reducer(state, action) {
