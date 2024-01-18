@@ -1,6 +1,7 @@
 const express = require('express')
 const mongoose = require('mongoose')
 const user = require('./models/user')
+const {Server} = require('socket.io')
 
 const app = express()
 
@@ -56,6 +57,29 @@ app.delete('/delete/:name', async (req, res) => {
     }
 })
 
-app.listen(3001, () => {
-    console.log('server listening on port 3001')
+const expressServer = app.listen(3000, () => {
+    console.log('server listening on port 3000')
+})
+
+const io = new Server(expressServer, {
+    cors: {
+        origin: '*'
+    }
+})
+
+io.on('connection', socket => {
+    socket.on('send-message', (user, message, room) => {
+        if (room === 'all') socket.broadcast.emit('receive-message', {user, message})
+        else socket.to(room).emit('receive-message', {user, message})
+    })
+
+    socket.on('join-room', (room, cb) => {
+        socket.join(room)
+        cb('You have joined ' + room)
+    })
+
+    socket.on('leave-room', (room, cb) => {
+        socket.leave(room)
+        cb('You have left ' + room)
+    })
 })
