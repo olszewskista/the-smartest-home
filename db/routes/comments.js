@@ -23,4 +23,17 @@ router.post('/:id', async (req, res) => {
     }
 })
 
+router.put('/:id', async (req, res) => {
+    try {
+        const comment = await Comment.findById(req.params.id)
+        comment.content = req.body.content
+        console.log(comment)
+        await comment.save()
+        res.status(200).json({message: 'Comment updated!'})
+    } catch (error) {
+        console.log(error)
+        res.status(500).json({error: error.message})
+    }
+})
+
 module.exports = router
