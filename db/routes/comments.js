@@ -6,6 +6,7 @@ const {checkAuthMiddleware} = require('../utils/auth')
 const router = Router()
 router.use(checkAuthMiddleware)
 
+//create a comment on a post with id
 router.post('/:id', async (req, res) => {
     try {
         const post = await Post.findById(req.params.id)
@@ -23,6 +24,7 @@ router.post('/:id', async (req, res) => {
     }
 })
 
+//update a comment with id
 router.put('/:id', async (req, res) => {
     try {
         const comment = await Comment.findById(req.params.id)
@@ -30,6 +32,18 @@ router.put('/:id', async (req, res) => {
         console.log(comment)
         await comment.save()
         res.status(200).json({message: 'Comment updated!'})
+    } catch (error) {
+        console.log(error)
+        res.status(500).json({error: error.message})
+    }
+})
+
+//delete a comment with id
+router.delete('/:id', async (req, res) => {
+    try {
+        const comment = await Comment.findByIdAndDelete(req.params.id)
+        console.log(comment)
+        res.status(200).json({message: 'Comment deleted!'})
     } catch (error) {
         console.log(error)
         res.status(500).json({error: error.message})
