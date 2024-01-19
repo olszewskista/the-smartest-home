@@ -1,5 +1,6 @@
 const {Router} = require('express')
 const Post = require('../models/post')
+const Comment = require('../models/comment')
 const {checkAuthMiddleware} = require('../utils/auth')
 
 const router = Router()
@@ -53,6 +54,8 @@ router.put('/:id', async (req, res) => {
 
 router.delete('/:id', async (req, res) => {
     try {
+        const post = await Post.findById(req.params.id)
+        const comment = await Comment.deleteMany({_id: {$in: post.comments}})
         const response = await Post.deleteOne({_id: req.params.id, author: res.locals.token.id})
         res.status(200).json({message: 'Post deleted!'})
     } catch (error) {
