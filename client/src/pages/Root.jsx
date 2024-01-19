@@ -1,12 +1,11 @@
 import { NavLink, Outlet, useLoaderData } from 'react-router-dom';
 import { useUser } from '../context/UserProvider';
-import { useEffect } from 'react';
+import { useLayoutEffect } from 'react';
 
 export default function RootLayout() {
     const {state, dispatch} = useUser();
     const data = useLoaderData();
-    console.log(data);
-    useEffect(() => {
+    useLayoutEffect(() => {
         if (data) {
             dispatch({type: 'LOGIN', payload: data})
         }
@@ -17,6 +16,9 @@ export default function RootLayout() {
                 <ul>
                     <li>
                         <NavLink to="/">Home</NavLink>
+                    </li>
+                    <li>
+                        <NavLink to="/posts">Posts</NavLink>
                     </li>
                     <li>
                         <NavLink to="/chat">Chat</NavLink>

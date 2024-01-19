@@ -4,6 +4,7 @@ import ChatPage from './pages/Chat';
 import RootLayout from './pages/Root';
 import LoginPage from './pages/Login';
 import { userLoader } from './utils/loaders';
+import PostsPage from './pages/Posts';
 
 function App() {
     const router = createBrowserRouter([
@@ -13,8 +14,9 @@ function App() {
             loader: userLoader,
             children: [
                 { index: true, element: <HomePage /> },
-                {path: 'login', element: <LoginPage />},
+                { path: 'login', element: <LoginPage /> },
                 { path: 'chat', element: <ChatPage /> },
+                { path: 'posts', element: <PostsPage /> },
             ],
         },
     ]);

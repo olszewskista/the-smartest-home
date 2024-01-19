@@ -31,6 +31,7 @@ export default function LoginForm() {
                 }
                 const data = await response2.json();
                 dispatch({type: 'LOGIN', payload: data})
+                actions.resetForm();
             } catch (error) {
                 console.log(error);
             }

@@ -1,8 +1,10 @@
 import { useEffect, useState } from 'react';
 import { io } from 'socket.io-client';
+import { useUser } from '../context/UserProvider';
 const socket = io('http://localhost:3000');
 
 export default function ChatPage() {
+    const {state} = useUser();
     const [messages, setMessages] = useState([]);
     const [message, setMessage] = useState('')
     const [room, setRoom] = useState('all')
@@ -18,8 +20,12 @@ export default function ChatPage() {
     }, [])
 
     function handleSend() {
-        setMessages(prev => [...prev, {user: socket.id, message}])
-        socket.emit('send-message', socket.id, message, room)
+        if (!state) {
+            alert('You must login to send message')
+            return
+        }
+        setMessages(prev => [...prev, {user: state.name, message}])
+        socket.emit('send-message', state.name, message, room)
     }
 
     function handleJoinRoom() {
