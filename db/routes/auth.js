@@ -39,4 +39,9 @@ router.post('/register', async (req, res) => {
     }
 })
 
+router.get('/logout', (req, res) => {
+    res.cookie('token', '', { maxAge: 1 })
+    res.status(200).json({message: 'You are logged out!'})
+})
+
 module.exports = router

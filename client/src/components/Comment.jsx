@@ -23,7 +23,7 @@ export default function Comment({ comment, setHelper }) {
         }
     }
     return (
-        <div className='flex flex-col gap-2 mt-1'>
+        <div className='flex flex-col gap-2 mt-4 bg-neutral-200 rounded p-2 shadow-md'>
             {!editing && (
                 <div className="flex flex-col gap-1">
                     <p>{comment.content}</p>

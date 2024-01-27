@@ -1,9 +1,11 @@
 import { useFormik } from 'formik';
 import { useUser } from '../context/UserProvider';
+import {useNavigate} from 'react-router-dom'
 
 
 export default function LoginForm() {
     const {dispatch} = useUser()
+    const navigate = useNavigate()
     const formik = useFormik({
         initialValues: {
             name: '',
@@ -30,6 +32,7 @@ export default function LoginForm() {
                 const data = await response2.json();
                 dispatch({type: 'LOGIN', payload: data})
                 actions.resetForm();
+                navigate('/')
             } catch (error) {
                 console.log(error);
             }

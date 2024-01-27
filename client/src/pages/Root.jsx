@@ -10,6 +10,12 @@ export default function RootLayout() {
             dispatch({type: 'LOGIN', payload: data})
         }
     }, [dispatch, data])
+    async function handleLogout() {
+        await fetch('http://localhost:3000/auth/logout', {
+            credentials: 'include',
+        });
+        dispatch({type: 'LOGOUT'})
+    }
     return (
         <>
             <nav className='flex gap-4 justify-between p-4 bg-orange-300 mb-4'>
@@ -26,9 +32,9 @@ export default function RootLayout() {
                     <li>
                         <NavLink to="/chat">Chat</NavLink>
                     </li>
-                    <li>
+                    {!state && <li>
                         <NavLink to="/login">Login</NavLink>
-                    </li>
+                    </li>}
                 </ul>
                 {state && <ul className='flex gap-4'>
                     <li>
@@ -36,6 +42,9 @@ export default function RootLayout() {
                     </li>
                     <li>
                         <span>{state.role}</span>
+                    </li>
+                    <li>
+                        <button onClick={handleLogout}>Logout</button>
                     </li>
                 </ul>}
             </nav>

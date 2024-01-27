@@ -7,7 +7,7 @@ export default function DisplayPosts({ posts, setHelper }) {
     return (
         <ul className='flex justify-between gap-28 flex-wrap mx-12 mt-4'>
             {posts.map((post) => (
-                <li key={post._id} className='max-h-[30rem] overflow-y-auto'>
+                <li key={post._id} className='max-h-[30rem] overflow-y-auto rounded p-1'>
                     <Post post={post} setHelper={setHelper}/>
                     <CommentForm setHelper={setHelper} postId={post._id}/>
                     <Comments post={post} setHelper={setHelper}/>

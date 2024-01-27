@@ -49,7 +49,7 @@ export default function Post({ post, setHelper }) {
     return (
         <div className='mb-2'>
             {!editing && (
-                <div className='flex flex-col items-center gap-1'>
+                <div className='flex flex-col items-center gap-1 bg-neutral-200 shadow p-4 rounded w-96'>
                     <h3 className='capitalize font-bold text-xl'>{post.title}</h3>
                     <p>{post.content}</p>
                     <p className='flex justify-between gap-4'>
