@@ -12,10 +12,13 @@ export default function RootLayout() {
     }, [dispatch, data])
     return (
         <>
-            <nav>
-                <ul>
+            <nav className='flex gap-4 justify-between p-4 bg-orange-300 mb-4'>
+                <ul className='flex gap-4'>
                     <li>
                         <NavLink to="/">Home</NavLink>
+                    </li>
+                    <li>
+                        <NavLink to="/dashboard">Dashboard</NavLink>
                     </li>
                     <li>
                         <NavLink to="/posts">Posts</NavLink>
@@ -27,7 +30,7 @@ export default function RootLayout() {
                         <NavLink to="/login">Login</NavLink>
                     </li>
                 </ul>
-                {state && <ul>
+                {state && <ul className='flex gap-4'>
                     <li>
                         <span>{state.name}</span>
                     </li>

@@ -18,18 +18,18 @@ export default function Heater() {
         mqttClient.publish('heater', 'off');
     }
     return (
-        <div>
-            <h1>Heater</h1>
+        <div className='bg-neutral-200 p-4 rounded shadow-md flex flex-col justify-center items-center'>
+            <h1 className='font-bold'>Heater</h1>
             {mqttData && (
-                <div>
+                <div className={mqttData.message === 'on' ? 'text-green-500' : 'text-red-500'}>
                     {mqttData.message !== 'status'
                         ? mqttData.message
                         : 'unknown'}
                 </div>
             )}
-            <div>
-                <button onClick={handleTurnOn}>Turn On</button>
-                <button onClick={handleTurnOff}>Turn Off</button>
+            <div className='flex gap-2'>
+                <button className='bg-green-300 p-1 rounded' onClick={handleTurnOn}>Turn On</button>
+                <button className='bg-red-300 p-1 rounded' onClick={handleTurnOff}>Turn Off</button>
             </div>
         </div>
     );

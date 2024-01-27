@@ -39,27 +39,28 @@ export default function ChatPage() {
             setMessages(prev => [...prev, {user: "Info", message}])
         })
     }
-    console.log(room)
     return (
-        <section>
-            <div>
+        <section className='flex flex-col justify-center items-center gap-4'>
+            <h1 className='font-bold uppercase text-3xl'>Chat</h1>
+            <div className='flex flex-col gap-1'>
                 <input type="text" value={message} onChange={e => setMessage(e.target.value)}/>
-                <button onClick={handleSend}>Send message</button>
+                <button className='bg-orange-300 p-1 rounded' onClick={handleSend}>Send message</button>
             </div>
-            <div>
+            <div className='flex gap-2'>
+                <button className='bg-red-300 p-1 rounded' onClick={handleLeaveRoom}>Exit room</button>
                 <select name="room" id="room" onChange={e => setRoom(e.target.value)}>
                     <option value="all">All</option>
                     <option value="livingRoom">Living Room</option>
                     <option value="kitchen">Kitchen</option>
                 </select>
-                <button onClick={handleJoinRoom}>Join room</button>
-                <button onClick={handleLeaveRoom}>Exit room</button>
+                <button className='bg-green-300 rounded p-1' onClick={handleJoinRoom}>Join room</button>
             </div>
-            <ul>
+            <ul className='flex flex-col gap-4 overflow-y-auto max-h-[60vh]'>
                 {messages.map((mess, ix) => {
                     return (
-                        <li key={ix}>
-                            {mess.user}: {mess.message}
+                        <li key={ix} className='bg-orange-100 p-2 rounded'>
+                            <span className='font-bold'>{mess.user}: </span>
+                            <span>{mess.message}</span>
                         </li>
                     );
                 })}

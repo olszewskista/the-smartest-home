@@ -1,23 +1,24 @@
-import Doors from "../components/Dashboard/Doors";
-import Heater from "../components/Dashboard/Heater";
-import Humidity from "../components/Dashboard/Humidity";
-import Lights from "../components/Dashboard/Lights";
-import Temp from "../components/Dashboard/Temp";
-import Windows from "../components/Dashboard/Windows";
-import Alarm from "../components/Dashboard/alarm";
+import Doors from '../components/Dashboard/Doors';
+import Heater from '../components/Dashboard/Heater';
+import Humidity from '../components/Dashboard/Humidity';
+import Lights from '../components/Dashboard/Lights';
+import Temp from '../components/Dashboard/Temp';
+import Windows from '../components/Dashboard/Windows';
+import Alarm from '../components/Dashboard/alarm';
 
 export default function DashboardPage() {
-    
     return (
-        <div style={{display: 'flex', gap: '2rem'}}>
-            {/* <h1>Dashboard</h1> */}
-            <Temp />
-            <Heater />
-            <Lights />
-            <Humidity />
-            <Windows />
-            <Alarm />
-            <Doors />
-        </div>
+        <>
+            <h1 className='font-bold text-3xl text-center uppercase mb-2'>Dashboard</h1>
+            <div className='flex gap-4 justify-evenly items-center h-[60vh]'>
+                <Temp />
+                <Heater />
+                <Lights />
+                <Humidity />
+                <Windows />
+                <Alarm />
+                <Doors />
+            </div>
+        </>
     );
 }

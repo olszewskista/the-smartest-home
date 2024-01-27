@@ -1,0 +1,15 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+    background-color: #f7fafc;
+    font-family: 'Open Sans', sans-serif;
+}
+
+input, select, textarea {
+    border: 1px solid #e2e8f0;
+    border-radius: 0.25rem;
+    padding: 0.5rem;
+    /* width: 100%; */
+}

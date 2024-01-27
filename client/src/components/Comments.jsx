@@ -6,7 +6,7 @@ export default function Comments({ post, setHelper }) {
     return (
         <div>
             {nonEmpty && (
-                <ul>
+                <ul className='flex flex-col gap-2'>
                     {post.comments.map((comment) => (
                         <li key={comment._id}>
                             <Comment comment={comment} setHelper={setHelper}/>

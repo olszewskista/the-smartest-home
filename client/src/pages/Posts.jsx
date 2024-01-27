@@ -12,7 +12,6 @@ export default function PostsPage() {
             if (params.value !== '') {
                 url += `?key=${params.key}&value=${params.value}`
             }
-            console.log(url)
             try {
                 const response = await fetch(url, {
                     credentials: 'include',
@@ -28,15 +27,14 @@ export default function PostsPage() {
         }
         getPosts();
     }, [fetchHelper, params]);
-    console.log(params)
     return (
-        <div>
-            <h1>Posts</h1>
-            <div>
-                <label htmlFor="serach">Search</label>
+        <div className='flex flex-col justify-center items-center'>
+            <h1 className='text-center text-3xl uppercase font-bold'>Posts</h1>
+            <div className='my-4'>
                 <input
                     type="text"
                     value={params.value}
+                    placeholder='Search'
                     onChange={(e) =>
                         setParams((prev) => ({
                             ...prev,
@@ -55,7 +53,6 @@ export default function PostsPage() {
                     <option value="content">Content</option>
                     <option value="author">Author</option>
                 </select>
-                <button onClick={() => setFetchHelper(prev => !prev)}>Search</button>
             </div>
             <NewPostForm setHelper={setFetchHelper} />
             <DisplayPosts posts={posts} setHelper={setFetchHelper} />

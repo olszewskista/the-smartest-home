@@ -30,7 +30,7 @@ export default function CommentForm({setHelper, postId, init, edit, setEditing})
     return (
         <form onSubmit={formik.handleSubmit}>
             <input type="text" {...formik.getFieldProps('content')} />
-            <button type="submit">Send</button>
+            <button className='bg-orange-300 p-2 rounded' type="submit">Send</button>
         </form>
     );
 }

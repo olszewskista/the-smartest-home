@@ -28,12 +28,12 @@ export default function NewPostForm({setHelper}) {
         },
     });
     return (
-        <form onSubmit={formik.handleSubmit}>
-            <div>
+        <form onSubmit={formik.handleSubmit} className='flex flex-col gap-4'>
+            <div className='flex flex-col'>
                 <label htmlFor="title">Title</label>
                 <input type="text" {...formik.getFieldProps('title')} />
             </div>
-            <div>
+            <div className='flex flex-col'>
                 <label htmlFor="content">Content</label>
                 <textarea
                     id=""
@@ -42,7 +42,7 @@ export default function NewPostForm({setHelper}) {
                     {...formik.getFieldProps('content')}
                 ></textarea>
             </div>
-            <button type="submit">Create your post</button>
+            <button className='bg-orange-200 py-2 rounded' type="submit">Create your post</button>
         </form>
     );
 }

@@ -16,10 +16,10 @@ client.on('connect', () => {
     setInterval(() => {
         if (heater) {
             temp = (temp - getRandom(-0.5, -0.2)).toFixed(1);
-            temp = temp > 30 ? 30 : temp;
+            temp = temp > 30 ? 30.0 : temp;
         } else {
             temp = (temp - getRandom(-0.2, 0.5)).toFixed(1);
-            temp = temp < 15 ? 15 : temp;
+            temp = temp < 15 ? 15.0 : temp;
         }
         client.publish('temp', `${temp}`);
     }, 5000);

@@ -39,8 +39,8 @@ export default function RegisterForm() {
         },
     });
     return (
-        <form onSubmit={formik.handleSubmit}>
-            <div>
+        <form onSubmit={formik.handleSubmit} className='flex flex-col gap-2'>
+            <div className='flex flex-col'>
                 <label htmlFor="name">Name</label>
                 <input
                     id="name"
@@ -48,7 +48,7 @@ export default function RegisterForm() {
                     {...formik.getFieldProps('name')}
                 />
             </div>
-            <div>
+            <div className='flex flex-col'>
                 <label htmlFor="password">Password</label>
                 <input
                     id="password"
@@ -56,7 +56,7 @@ export default function RegisterForm() {
                     {...formik.getFieldProps('password')}
                 />
             </div>
-            <div>
+            <div className='flex flex-col'>
                 <label htmlFor="role">Role</label>
                 <select
                     name="role"
@@ -64,11 +64,12 @@ export default function RegisterForm() {
                     value={formik.values.role}
                     onChange={formik.handleChange}
                 >
+                    <option value="adult">Adult</option>
+                    <option value="child">Child</option>
                     <option value="admin">Admin</option>
-                    <option value="user">User</option>
                 </select>
             </div>
-            <button type="submit">Register</button>
+            <button className='bg-orange-300 p-2 rounded' type="submit">Register</button>
         </form>
     );
 }

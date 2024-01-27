@@ -15,11 +15,11 @@ client.on('connect', () => {
     client.subscribe('humidity');
     setInterval(() => {
         if (heater) {
-            humidity = (humidity - getRandom(-1, -3)).toFixed(1);
-            humidity = humidity > 100 ? 100 : humidity;
-        } else {
             humidity = (humidity - getRandom(-1, 5)).toFixed(1);
-            humidity = humidity < 0 ? 0 : humidity;
+            humidity = humidity < 15 ? 15.0 : humidity;
+        } else {
+            humidity = (humidity - getRandom(-1, -3)).toFixed(1);
+            humidity = humidity > 80 ? 80.0 : humidity;
         }
         client.publish('humidity', `${humidity}`);
     }, 5000);

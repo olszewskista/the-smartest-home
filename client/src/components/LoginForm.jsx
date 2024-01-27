@@ -3,15 +3,13 @@ import { useUser } from '../context/UserProvider';
 
 
 export default function LoginForm() {
-    const {dispatch, state} = useUser()
-    console.log(state)
+    const {dispatch} = useUser()
     const formik = useFormik({
         initialValues: {
             name: '',
             password: '',
         },
         onSubmit: async (values, actions) => {
-            // alert(JSON.stringify(values, null, 2));
             try {
                 const response = await fetch('http://localhost:3000/auth/login', {
                     method: 'POST',
@@ -38,8 +36,8 @@ export default function LoginForm() {
         },
     });
     return (
-        <form onSubmit={formik.handleSubmit}>
-            <div>
+        <form onSubmit={formik.handleSubmit} className='flex flex-col gap-2'>
+            <div className='flex flex-col'>
                 <label htmlFor="name">Name</label>
                 <input
                     id="name"
@@ -47,7 +45,7 @@ export default function LoginForm() {
                     {...formik.getFieldProps('name')}
                 />
             </div>
-            <div>
+            <div className='flex flex-col'>
                 <label htmlFor="password">Password</label>
                 <input
                     id="password"
@@ -55,7 +53,7 @@ export default function LoginForm() {
                     {...formik.getFieldProps('password')}
                 />
             </div>
-            <button type="submit">Login</button>
+            <button className='bg-orange-300 rounded p-2' type="submit">Login</button>
         </form>
     );
 }
