@@ -38,7 +38,7 @@ export default function NewPostForm({setHelper}) {
                 <textarea
                     id=""
                     cols="30"
-                    rows="10"
+                    rows="5"
                     {...formik.getFieldProps('content')}
                 ></textarea>
             </div>

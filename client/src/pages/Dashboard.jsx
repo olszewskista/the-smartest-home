@@ -9,12 +9,16 @@ import Alarm from '../components/Dashboard/alarm';
 export default function DashboardPage() {
     return (
         <>
-            <h1 className='font-bold text-3xl text-center uppercase mb-2'>Dashboard</h1>
-            <div className='flex gap-4 justify-evenly items-center h-[60vh]'>
-                <Temp />
+            <h1 className="font-bold text-3xl text-center uppercase mb-2">
+                Dashboard
+            </h1>
+            <div className="flex gap-4 justify-evenly items-center h-[60vh]">
+                <div className='flex gap-2 flex-col'>
+                    <Temp />
+                    <Humidity />
+                </div>
                 <Heater />
                 <Lights />
-                <Humidity />
                 <Windows />
                 <Alarm />
                 <Doors />

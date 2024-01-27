@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import useMqtt from '../../hooks/useMqtt';
 
 export default function Lights() {
