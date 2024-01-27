@@ -2,6 +2,7 @@ import Heater from "../components/Dashboard/Heater";
 import Humidity from "../components/Dashboard/Humidity";
 import Lights from "../components/Dashboard/Lights";
 import Temp from "../components/Dashboard/Temp";
+import Windows from "../components/Dashboard/Windows";
 
 export default function DashboardPage() {
     
@@ -12,6 +13,7 @@ export default function DashboardPage() {
             <Heater />
             <Lights />
             <Humidity />
+            <Windows />
         </div>
     );
 }
