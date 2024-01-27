@@ -16,11 +16,13 @@ client.on('connect', () => {
     setInterval(() => {
         if (heater) {
             temp = (temp - getRandom(-0.5, -0.2)).toFixed(1);
+            temp = temp > 30 ? 30 : temp;
         } else {
             temp = (temp - getRandom(-0.2, 0.5)).toFixed(1);
+            temp = temp < 15 ? 15 : temp;
         }
         client.publish('temp', `${temp}`);
-    }, 1000);
+    }, 5000);
 })
 
 client.on('message', (topic, message) => {
@@ -29,5 +31,7 @@ client.on('message', (topic, message) => {
         heater = true;
     } else if (message.toString() === 'off') {
         heater = false;
+    } else if (topic === 'temp' && message.toString() === 'status') {
+        client.publish('temp', `${temp}`);
     }
 });

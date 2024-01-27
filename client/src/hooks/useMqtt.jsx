@@ -11,6 +11,7 @@ const useMqtt = (brokerUrl, topic) => {
         client.on('connect', () => {
             console.log('Connected to MQTT broker');
             client.subscribe(topic);
+            client.publish(topic, 'status');
         });
 
         client.on('message', (receivedTopic, message) => {

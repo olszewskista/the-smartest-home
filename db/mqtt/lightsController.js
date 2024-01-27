@@ -6,16 +6,15 @@ let color;
 
 client.on('connect', () => {
     console.log('connected to mqtt - lights');
-    client.subscribe('lights/status');
-    client.subscribe('lights/set');
+    client.subscribe('lights');
 })
 
 client.on('message', (topic, message) => {
     console.log(message.toString());
-    if (topic === 'lights/status') {
-        client.publish('lights/color', color);
-    } else if (topic === 'lights/set') { 
+    if (message.toString() === 'status') {
+        console.log('gitddd')
+        client.publish('lights', color);
+    } else { 
         color = message.toString();
-        client.publish('lights/color', color);
     }
 });
