@@ -1,10 +1,10 @@
 version: '3.8'
 services:
-  mqtt:
-      image: hivemq/hivemq4
-      ports:
-        - "8081:8081"
-        - "1883:1883"
+  # mqtt:
+  #     image: hivemq/hivemq4
+  #     ports:
+  #       - "8081:8081"
+  #       - "1883:1883"
   mongo:
     image: mongo
     container_name: mongo
