@@ -8,7 +8,7 @@ export default function PostsPage() {
     const [posts, setPosts] = useState([]);
     useEffect(() => {
         async function getPosts() {
-            let url = 'http://localhost:3000/posts'
+            let url = '/api/posts'
             if (params.value !== '') {
                 url += `?key=${params.key}&value=${params.value}`
             }

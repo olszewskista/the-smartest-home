@@ -14,7 +14,7 @@ export default function RegisterForm() {
         onSubmit: async (values, actions) => {
             try {
                 const response = await fetch(
-                    'http://localhost:3000/auth/register',
+                    '/api/auth/register',
                     {
                         method: 'POST',
                         credentials: 'include',
@@ -25,7 +25,7 @@ export default function RegisterForm() {
                 if (!response.ok) {
                     throw new Error('Network response was not ok');
                 }
-                const response2 = await fetch('http://localhost:3000/auth/', {
+                const response2 = await fetch('/api/auth/', {
                     credentials: 'include',
                     headers: { 'Content-Type': 'application/json' },
                 });

@@ -4,7 +4,7 @@ import Humidity from '../components/Dashboard/Humidity';
 import Lights from '../components/Dashboard/Lights';
 import Temp from '../components/Dashboard/Temp';
 import Windows from '../components/Dashboard/Windows';
-import Alarm from '../components/Dashboard/alarm';
+import Alarm from '../components/Dashboard/Alarm';
 
 export default function DashboardPage() {
     return (

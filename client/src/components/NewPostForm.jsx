@@ -9,7 +9,7 @@ export default function NewPostForm({setHelper}) {
         },
         onSubmit: async (values, actions) => {
             try {
-                const response = await fetch('http://localhost:3000/posts', {
+                const response = await fetch('/api/posts', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',

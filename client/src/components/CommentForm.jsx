@@ -8,7 +8,7 @@ export default function CommentForm({setHelper, postId, init, edit, setEditing})
         },
         onSubmit: async (values, actions) => {
             try {
-                const response = await fetch('http://localhost:3000/comments/' + postId, {
+                const response = await fetch('/api/comments/' + postId, {
                     method: edit ? 'PUT' : 'POST',
                     headers: {
                         'Content-Type': 'application/json',

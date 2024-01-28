@@ -1,6 +1,6 @@
 export async function userLoader() {
     try {
-        const response = await fetch('http://localhost:3000/auth/', {
+        const response = await fetch('/api/auth/', {
             credentials: 'include',
             headers: {
                 'Content-Type': 'application/json'

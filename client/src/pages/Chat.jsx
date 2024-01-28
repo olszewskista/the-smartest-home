@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { io } from 'socket.io-client';
 import { useUser } from '../context/UserProvider';
-const socket = io('http://localhost:3000');
+const socket = io('/socket.io');
 
 export default function ChatPage() {
     const {state} = useUser();

@@ -12,7 +12,7 @@ export default function Post({ post, setHelper }) {
         onSubmit: async (values) => {
             try {
                 const response = await fetch(
-                    'http://localhost:3000/posts/' + post._id,
+                    '/api/posts/' + post._id,
                     {
                         method: 'PUT',
                         headers: {
@@ -34,7 +34,7 @@ export default function Post({ post, setHelper }) {
     })
     async function handleDelete(id) {
         try {
-            const response = await fetch('http://localhost:3000/posts/' + id, {
+            const response = await fetch('/api/posts/' + id, {
                 method: 'DELETE',
                 credentials: 'include',
             });

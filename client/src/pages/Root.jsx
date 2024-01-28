@@ -11,7 +11,7 @@ export default function RootLayout() {
         }
     }, [dispatch, data])
     async function handleLogout() {
-        await fetch('http://localhost:3000/auth/logout', {
+        await fetch('/api/auth/logout', {
             credentials: 'include',
         });
         dispatch({type: 'LOGOUT'})

@@ -8,7 +8,7 @@ export default function Comment({ comment, setHelper }) {
     async function handleDelete() {
         try {
             const response = await fetch(
-                'http://localhost:3000/comments/' + comment._id,
+                '/api/comments/' + comment._id,
                 {
                     method: 'DELETE',
                     credentials: 'include',

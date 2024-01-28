@@ -1,0 +1,41 @@
+version: '3.8'
+services:
+  mqtt:
+      image: hivemq/hivemq4
+      ports:
+        - "8081:8081"
+        - "1883:1883"
+  mongo:
+    image: mongo
+    container_name: mongo
+    platform: linux/arm64
+    restart: always
+  nginx:
+    build: 
+      dockerfile: Dockerfile
+      context: ./nginx
+    container_name: nginx
+    restart: always
+    ports:
+      - 3500:80
+    depends_on:
+      - client
+      - api
+  api:
+    build:
+      dockerfile: Dockerfile
+      context: ./db
+    container_name: api
+    restart: always
+    ports:
+      - 3001:3000
+    environment:
+      - DB_URI=mongodb://mongo:27017
+  client:
+    stdin_open: true
+    tty: true
+    build:
+      dockerfile: Dockerfile
+      context: ./client
+    container_name: client
+    restart: always

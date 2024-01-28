@@ -7,21 +7,23 @@ const userRouter = require('./routes/user')
 const authRouter = require('./routes/auth')
 const commentsRouter = require('./routes/comments')
 const postsRouter = require('./routes/posts')
+const DB_URI = process.env.DB_URI || 'mongodb://localhost:27017/'
+console.log(DB_URI)
 
 const app = express()
 
 app.use(cors({
-    origin: 'http://localhost:5173',
+    origin: ['http://localhost:8080', 'http://localhost:3000', 'http://localhost:3500'],
     credentials: true
 }))
 app.use(express.json())
 app.use(cookieParser())
-app.use('/user', userRouter)
-app.use('/auth', authRouter)
-app.use('/comments', commentsRouter)
-app.use('/posts', postsRouter)
+app.use('/api/user', userRouter)
+app.use('/api/auth', authRouter)
+app.use('/api/comments', commentsRouter)
+app.use('/api/posts', postsRouter)
 
-mongoose.connect('mongodb://localhost:27017')
+mongoose.connect(DB_URI)
 mongoose.connection.on('connected', () => console.log('connected to db'))
 
 const expressServer = app.listen(3000, () => {
@@ -30,7 +32,7 @@ const expressServer = app.listen(3000, () => {
 
 const io = new Server(expressServer, {
     cors: {
-        origin: 'http://localhost:5173'
+        origin: ['http://localhost:8080', 'http://localhost:3000', 'http://localhost:3500'],
     }
 })
 

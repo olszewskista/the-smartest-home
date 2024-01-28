@@ -13,7 +13,7 @@ export default function LoginForm() {
         },
         onSubmit: async (values, actions) => {
             try {
-                const response = await fetch('http://localhost:3000/auth/login', {
+                const response = await fetch('/api/auth/login', {
                     method: 'POST',
                     credentials: 'include',
                     headers: { 'Content-Type': 'application/json' },
@@ -22,7 +22,7 @@ export default function LoginForm() {
                 if (!response.ok) {
                     throw new Error('Network response was not ok');
                 }
-                const response2 = await fetch('http://localhost:3000/auth/', {
+                const response2 = await fetch('/api/auth/', {
                     credentials: 'include',
                     headers: { 'Content-Type': 'application/json' }
                 });
