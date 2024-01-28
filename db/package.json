@@ -5,13 +5,23 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "nodemon server.js"
+    "dev": "nodemon server.js",
+    "temp": "node mqtt/tempSensor.js",
+    "alarm": "node mqtt/alarm.js",
+    "heater": "node mqtt/heater.js",
+    "humidity": "node mqtt/humiditySensor.js",
+    "lights": "node mqtt/lightsController.js",
+    "windows": "node mqtt/windowsController.js",
+    "doors": "node mqtt/doorsController.js",
+    "mqtt": "concurrently \"npm run temp\" \"npm run alarm\" \"npm run heater\" \"npm run humidity\" \"npm run lights\" \"npm run windows\" \"npm run doors\"",
+    "all": "concurrently \"npm run temp\" \"npm run alarm\" \"npm run heater\" \"npm run humidity\" \"npm run lights\" \"npm run windows\" \"npm run doors\" \"npm run dev\""
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
     "bcrypt": "^5.1.1",
+    "concurrently": "^8.2.2",
     "cookie-parser": "^1.4.6",
     "cors": "^2.8.5",
     "express": "^4.18.2",
