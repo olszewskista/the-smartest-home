@@ -9,7 +9,7 @@ export default function RegisterForm() {
         initialValues: {
             name: '',
             password: '',
-            role: 'user',
+            role: 'adult',
         },
         onSubmit: async (values, actions) => {
             try {

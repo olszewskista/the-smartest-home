@@ -1,0 +1,29 @@
+version: '3.9'
+services:
+  mongo:
+    image: mongo
+    container_name: mongo
+    platform: linux/arm64
+    restart: always
+    ports:
+      - 27017:27017
+  api:
+    build:
+      dockerfile: Dockerfile
+      context: ./db
+    container_name: api
+    restart: always
+    ports:
+      - 3000:3000
+    environment:
+      - DB_URI=mongodb://mongo:27017
+  client:
+    stdin_open: true
+    tty: true
+    build:
+      dockerfile: Dockerfile
+      context: ./client
+    container_name: client
+    ports:
+      - 5173:5173
+    restart: always

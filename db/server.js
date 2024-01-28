@@ -7,6 +7,7 @@ const userRouter = require('./routes/user')
 const authRouter = require('./routes/auth')
 const commentsRouter = require('./routes/comments')
 const postsRouter = require('./routes/posts')
+const DB_URI = process.env.DB_URI || 'mongodb://localhost:27017'
 
 const app = express()
 
@@ -21,7 +22,7 @@ app.use('/auth', authRouter)
 app.use('/comments', commentsRouter)
 app.use('/posts', postsRouter)
 
-mongoose.connect('mongodb://localhost:27017')
+mongoose.connect(DB_URI)
 mongoose.connection.on('connected', () => console.log('connected to db'))
 
 const expressServer = app.listen(3000, () => {
