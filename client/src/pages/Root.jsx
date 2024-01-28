@@ -32,6 +32,9 @@ export default function RootLayout() {
                     <li>
                         <NavLink to="/chat">Chat</NavLink>
                     </li>
+                    <li>
+                        <NavLink to="/admin">Admin</NavLink>
+                    </li>
                     {!state && <li>
                         <NavLink to="/login">Login</NavLink>
                     </li>}

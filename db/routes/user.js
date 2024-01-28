@@ -1,11 +1,16 @@
 const {Router} = require('express')
+const User = require('../models/user')
+const {checkAdminMiddleware, checkAuthMiddleware} = require('../utils/auth')
 
 const router = Router()
+
+router.use(checkAuthMiddleware)
+router.use(checkAdminMiddleware)
 
 //get all users
 router.get('/', async (req, res) => {
     try {
-        const usr = await user.find()
+        const usr = await User.find()
         res.status(200).json(usr)
     } catch (error) {
         res.status(500).json(error.message)
@@ -15,7 +20,7 @@ router.get('/', async (req, res) => {
 //create new user
 router.post('/create', async (req, res) => {
     try {
-        const usr = new user({name: req.body.name, password: req.body.password, role: req.body.role})
+        const usr = new User({name: req.body.name, password: req.body.password, role: req.body.role})
         await usr.save()
         res.status(200).json({message: 'User created!'})
     } catch (error) {
@@ -26,7 +31,7 @@ router.post('/create', async (req, res) => {
 //update existing user
 router.put('/update/:name', async (req, res) => {
     try {
-        const users = await user.find({name: req.params.name})
+        const users = await User.find({name: req.params.name})
         if (users.length === 0) throw new Error('User not found!')
         const existingUser = users[0]
         existingUser.name = req.body.name
@@ -41,8 +46,9 @@ router.put('/update/:name', async (req, res) => {
 
 //delete user
 router.delete('/delete/:name', async (req, res) => {
+    console.log(req.params.name)
     try {
-        const response = await user.deleteOne({name: req.params.name})
+        const response = await User.deleteOne({name: req.params.name})
         res.status(200).json({message: 'User deleted!'})
     } catch (error) {
         res.status(500).json(error.message)

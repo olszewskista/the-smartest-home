@@ -1,5 +1,6 @@
 const jwt = require('jsonwebtoken');
 const secret = 'super secret string'
+const User = require('../models/user')
 
 function createToken(id) {
     return jwt.sign({ id }, secret, { expiresIn: 60 * 60 });
@@ -29,4 +30,14 @@ function checkAuthMiddleware(req, res, next) {
     }
 }
 
-module.exports = { createToken, verifyToken, checkAuthMiddleware };
+async function checkAdminMiddleware(req, res, next) {
+    try {
+        const user = await User.findById(res.locals.token.id)
+        if (user.role !== 'admin') return res.status(401).json('Not authorized')
+        next()
+    } catch (error) {
+        res.status(401).json(error.message)
+    }
+}
+
+module.exports = { createToken, verifyToken, checkAuthMiddleware, checkAdminMiddleware };
