@@ -41,7 +41,7 @@ $ docker compose up
 ## Software used
 
 - Vite + React
-- Javascipt + Typescript
+- Javascipt
 - Socket.IO
 - MQTT.js + Mosquitto Broker
 - Express.js
