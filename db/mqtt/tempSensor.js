@@ -1,6 +1,6 @@
 const mqtt = require('mqtt');
 
-const client = mqtt.connect('ws://localhost:8000/mqtt');
+const client = mqtt.connect('ws://mqtt:8000/mqtt');
 
 let temp = 22;
 let heater = false;
@@ -21,6 +21,7 @@ client.on('connect', () => {
             temp = (temp - getRandom(-0.2, 0.5)).toFixed(1);
             temp = temp < 15 ? 15.0 : temp;
         }
+        console.log(temp);
         client.publish('temp', `${temp}`);
     }, 5000);
 })

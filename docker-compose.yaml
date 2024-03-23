@@ -1,14 +1,16 @@
 version: '3.9'
 services:
   mqtt:
-      image: hivemq/hivemq4
+      build:
+        dockerfile: Dockerfile
+        context: ./mqtt
       ports:
-        - "8080:8080"
         - "1883:1883"
+        - "8000:8000"
+        - "9001:9001"
   mongo:
     image: mongo
-    container_name: mongo
-    platform: linux/arm64
+    # container_name: mongo_tsm
     restart: always
     ports:
       - 27017:27017
@@ -16,7 +18,7 @@ services:
     build:
       dockerfile: Dockerfile
       context: ./db
-    container_name: api
+    # container_name: api
     restart: always
     ports:
       - 3000:3000
@@ -28,7 +30,7 @@ services:
     build:
       dockerfile: Dockerfile
       context: ./client
-    container_name: client
+    # container_name: client
     ports:
       - 5173:5173
     restart: always

@@ -1,6 +1,6 @@
 const mqtt = require('mqtt');
 
-const client = mqtt.connect('ws://localhost:8000/mqtt');
+const client = mqtt.connect('ws://mqtt:8000/mqtt');
 
 let color;
 
